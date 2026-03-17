@@ -92,7 +92,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-3 gap-2 rounded-xl border border-[var(--line)] bg-white p-3 sm:gap-3 sm:p-4">
             {[
-              { value: '0', label: 'Sign-up Steps' },
+              { value: 'No', label: 'Sign-up Steps' },
               { value: '24h', label: 'Max Expiry' },
               { value: 'Live', label: 'Collab Mode' },
             ].map((stat) => (
@@ -191,7 +191,7 @@ export default function Home() {
 
             <div className="turnstile-wrap flex justify-center overflow-hidden rounded-lg border border-[var(--line)] bg-white py-3">
               <Turnstile
-                siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'}
+                siteKey={process.env.NEXT_PUBLIC_TS_SITE || process.env.NEXT_PUBLIC_TS_SITE_KEY || process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'}
                 onSuccess={(token) => setTurnstileToken(token)}
                 onError={() => alert('Verification failed. Please try again.')}
                 options={{

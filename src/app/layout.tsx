@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Manrope, Playfair_Display } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 
@@ -25,11 +26,9 @@ export const metadata: Metadata = {
   title: "mText | Secure, fast text sharing",
   description: "Share notes and snippets instantly with expiry controls and optional live collaboration.",
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
-    ],
-    shortcut: "/favicon.ico",
+    icon: [{ url: "/favicon-mText.png", type: "image/png" }],
+    shortcut: "/favicon-mText.png",
+    apple: "/favicon-mText.png",
   },
 };
 
@@ -47,9 +46,14 @@ export default function RootLayout({
         <header className="sticky top-0 z-30 border-b border-[var(--line)] backdrop-blur-md bg-[color:var(--surface-frost)]">
           <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
             <Link href="/" className="group flex items-center gap-3 text-[var(--ink)]">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--ink)] text-[var(--surface)] shadow-sm transition-transform duration-200 group-hover:rotate-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
-              </span>
+              <Image
+                src="/mText-logo.png"
+                alt="mText logo"
+                width={36}
+                height={36}
+                className="h-9 w-9 rounded-xl object-cover shadow-sm transition-transform duration-200 group-hover:rotate-3"
+                priority
+              />
               <span className="leading-tight">
                 <span className="block text-base font-extrabold tracking-tight">
                   <span className="brand-mark mr-0.5">m</span>
