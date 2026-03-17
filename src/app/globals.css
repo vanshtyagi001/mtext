@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f2f6f7;
+  --surface: #ffffff;
+  --surface-soft: #f8fbfb;
+  --surface-frost: rgba(248, 251, 251, 0.7);
+  --ink: #0f1721;
+  --muted: #5f6f7c;
+  --line: #d8e1e5;
+  --accent: #0f766e;
+  --accent-strong: #115e59;
+  --accent-soft: #e5f4f2;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-ibm-plex-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-manrope), "Segoe UI", sans-serif;
+}
+
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8% 14%, rgba(15, 118, 110, 0.12), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(14, 116, 144, 0.13), transparent 32%),
+    linear-gradient(180deg, #f6fbfa 0%, #f2f6f7 38%, #ecf2f4 100%);
+}
+
+.surface-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 24px 40px -30px rgba(18, 33, 45, 0.45);
+}
+
+.reveal {
+  animation: rise-in 0.6s ease-out both;
+}
+
+.reveal-delayed {
+  animation: rise-in 0.6s ease-out 0.12s both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 360px) {
+  .turnstile-wrap > * {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
 }
