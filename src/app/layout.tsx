@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Manrope, Playfair_Display } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import InstallButton from "@/components/install-button";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -69,6 +70,7 @@ export default function RootLayout({
         </header>
 
         <main className="relative z-10 flex-1">{children}</main>
+          <InstallButton />
 
         <footer className="relative z-10 mt-auto border-t border-[var(--line)] bg-[var(--surface-soft)]/80">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-4 py-7 text-sm text-[var(--muted)] sm:flex-row sm:px-6 lg:px-8">
