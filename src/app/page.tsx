@@ -87,7 +87,7 @@ export default function Home() {
               Share text with confidence, not clutter.
             </h1>
             <p className="max-w-2xl text-base leading-relaxed text-[var(--muted)] sm:text-lg">
-              MyText helps teams move quickly with expiring links, optional real-time editing, and zero onboarding friction.
+              mText helps teams move quickly with expiring links, optional real-time editing, and zero onboarding friction.
             </p>
           </div>
           <div className="grid grid-cols-3 gap-2 rounded-xl border border-[var(--line)] bg-white p-3 sm:gap-3 sm:p-4">

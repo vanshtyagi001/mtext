@@ -44,6 +44,35 @@ body {
   box-shadow: 0 24px 40px -30px rgba(18, 33, 45, 0.45);
 }
 
+.brand-mark {
+  display: inline-block;
+  position: relative;
+  font-family: var(--font-playfair-display), "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  background: linear-gradient(135deg, #0f766e 0%, #115e59 55%, #0e7490 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: 0 2px 12px rgba(15, 118, 110, 0.22);
+  animation: brand-mark-float 2.6s ease-in-out infinite;
+}
+
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 1.1em;
+  height: 1.1em;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(15, 118, 110, 0.3) 0%, rgba(15, 118, 110, 0) 70%);
+  z-index: -1;
+  animation: brand-mark-halo 2.6s ease-in-out infinite;
+}
+
 .reveal {
   animation: rise-in 0.6s ease-out both;
 }
@@ -60,6 +89,36 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes brand-mark-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    filter: saturate(1);
+  }
+  50% {
+    transform: translateY(-1px);
+    filter: saturate(1.15);
+  }
+}
+
+@keyframes brand-mark-halo {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark {
+    animation: none;
   }
 }
 
