@@ -9,6 +9,7 @@ const generateCode = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 
 export default function Home() {
   const router = useRouter()
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TS_SITE || process.env.NEXT_PUBLIC_TS_SITE_KEY || process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
   const [content, setContent] = useState('')
   const [useCustomCode, setUseCustomCode] = useState(false)
   const [customCode, setCustomCode] = useState('')
@@ -190,14 +191,20 @@ export default function Home() {
             </div>
 
             <div className="turnstile-wrap flex justify-center overflow-hidden rounded-lg border border-[var(--line)] bg-white py-3">
-              <Turnstile
-                siteKey={process.env.NEXT_PUBLIC_TS_SITE || process.env.NEXT_PUBLIC_TS_SITE_KEY || process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'}
-                onSuccess={(token) => setTurnstileToken(token)}
-                onError={() => alert('Verification failed. Please try again.')}
-                options={{
-                  theme: 'light',
-                }}
-              />
+              {turnstileSiteKey ? (
+                <Turnstile
+                  siteKey={turnstileSiteKey}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onError={() => alert('Verification failed. Please try again.')}
+                  options={{
+                    theme: 'light',
+                  }}
+                />
+              ) : (
+                <p className="px-4 text-center text-sm font-semibold text-rose-600">
+                  CAPTCHA is not configured. Set NEXT_PUBLIC_TS_SITE in your environment.
+                </p>
+              )}
             </div>
 
             <div className="sticky bottom-3 z-20 sm:static">
