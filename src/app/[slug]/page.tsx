@@ -117,8 +117,8 @@ export default function TextPage() {
         </div>
         <h1 className="mb-2 text-2xl font-extrabold tracking-tight text-[var(--ink)]">Not found</h1>
         <p className="mb-6 text-sm text-[var(--muted)]">This note does not exist or has expired.</p>
-        <Link href="/" className="inline-block rounded-lg bg-[var(--ink)] px-6 py-2.5 text-sm font-bold text-white transition hover:bg-[#1c2b38]">
-          Create New Note
+        <Link href={`/?code=${slug}`} className="inline-block rounded-lg bg-[var(--ink)] px-6 py-2.5 text-sm font-bold text-white transition hover:bg-[#1c2b38]">
+          Create Note with '{slug}'
         </Link>
       </div>
     </div>
