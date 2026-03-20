@@ -48,6 +48,37 @@ export default function Home() {
       const expiryDate = new Date()
       expiryDate.setHours(expiryDate.getHours() + expiryHours)
 
+      const { data: existing } = await supabase
+        .from('texts')
+        .select('expires_at')
+        .eq('slug', finalCode)
+        .maybeSingle()
+
+      if (existing) {
+        if (new Date(existing.expires_at) > new Date()) {
+          alert('Code already exists and is active. Try another one.')
+          setLoading(false)
+          return
+        } else {
+          const { error: updateError } = await supabase
+            .from('texts')
+            .update({
+              content,
+              expires_at: expiryDate.toISOString(),
+              is_editable: isEditable,
+            })
+            .eq('slug', finalCode)
+
+          if (updateError) {
+            alert('Failed to save text.')
+            setLoading(false)
+            return
+          }
+          router.push(`/${finalCode}`)
+          return
+        }
+      }
+
       const { error } = await supabase
         .from('texts')
         .insert({
